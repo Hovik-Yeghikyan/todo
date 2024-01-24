@@ -27,7 +27,6 @@ public class ToDoManager {
                         .finishDate(resultSet.getDate("finish_date"))
                         .user(userManager.getUserById(resultSet.getInt("user_id")))
                         .status(Status.valueOf(resultSet.getString("status")))
-
                         .build());
             }
         } catch (SQLException e) {
@@ -73,7 +72,7 @@ public class ToDoManager {
         }
     }
 
-    public void deleteLesson(int id) {
+    public void deleteToDo(int id) {
         String sql = "DELETE FROM to_do WHERE id=" + id;
         try (Statement statement = connection.createStatement()) {
             statement.executeUpdate(sql);
