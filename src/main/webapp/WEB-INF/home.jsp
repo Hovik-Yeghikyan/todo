@@ -77,53 +77,68 @@ Welcome <%=user.getName() + " " + user.getSurname()%>  !!! <a href="/logout">Log
     </div>
     <div class="p-2 mx-4 border-black-25 border-bottom"></div>
     <!-- View options section -->
-    <div class="row m-1 p-3 px-5 justify-content-end">
-        <div class="col-auto d-flex align-items-center">
-            <label class="text-secondary my-2 pr-2 view-opt-label">Filter</label>
-            <select class="custom-select custom-select-sm btn my-2">
-                <option value="all" selected>All</option>
-                <option value="completed">Completed</option>
-                <option value="active">Active</option>
-                <option value="has-due-date">Has due date</option>
-            </select>
-        </div>
-        <div class="col-auto d-flex align-items-center px-1 pr-3">
-            <label class="text-secondary my-2 pr-2 view-opt-label">Sort</label>
-            <select class="custom-select custom-select-sm btn my-2">
-                <option value="added-date-asc" selected>Added date</option>
-                <option value="due-date-desc">Due date</option>
-            </select>
-            <i class="fa fa fa-sort-amount-asc text-info btn mx-0 px-0 pl-1" data-toggle="tooltip"
-               data-placement="bottom" title="Ascending"></i>
-            <i class="fa fa fa-sort-amount-desc text-info btn mx-0 px-0 pl-1 d-none" data-toggle="tooltip"
-               data-placement="bottom" title="Descending"></i>
-        </div>
-    </div>
+<%--    <div class="row m-1 p-3 px-5 justify-content-end">--%>
+<%--        <div class="col-auto d-flex align-items-center">--%>
+<%--            <label class="text-secondary my-2 pr-2 view-opt-label">Filter</label>--%>
+<%--            <select class="custom-select custom-select-sm btn my-2">--%>
+<%--                <option value="all" selected>All</option>--%>
+<%--                <option value="completed">Completed</option>--%>
+<%--                <option value="active">Active</option>--%>
+<%--                <option value="has-due-date">Has due date</option>--%>
+<%--            </select>--%>
+<%--        </div>--%>
+<%--        <div class="col-auto d-flex align-items-center px-1 pr-3">--%>
+<%--            <label class="text-secondary my-2 pr-2 view-opt-label">Sort</label>--%>
+<%--            <select class="custom-select custom-select-sm btn my-2">--%>
+<%--                <option value="added-date-asc" selected>Added date</option>--%>
+<%--                <option value="due-date-desc">Due date</option>--%>
+<%--            </select>--%>
+<%--            <i class="fa fa fa-sort-amount-asc text-info btn mx-0 px-0 pl-1" data-toggle="tooltip"--%>
+<%--               data-placement="bottom" title="Ascending"></i>--%>
+<%--            <i class="fa fa fa-sort-amount-desc text-info btn mx-0 px-0 pl-1 d-none" data-toggle="tooltip"--%>
+<%--               data-placement="bottom" title="Descending"></i>--%>
+<%--        </div>--%>
+<%--    </div>--%>
+    <table border="1">
+        <tr>
+            <th>Title</th>
+            <th>Created Date</th>
+            <th>Finish Date</th>
+            <th>Status</th>
+            <th>Created by</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
 <tr>
     <%
         if (!toDoList.isEmpty()){
             for (ToDo toDo : toDoList) {%>
 
-        <td>
-            <%=toDo.getTitle()%></td>
-    <br>
-        <td><%=toDo.getCreatedDate()%>
-        </td>
-    <td><%=toDo.getFinishDate()%>
-    </td>
-    <br>
-        <td><%=toDo.getStatus()%>
-        </td>br
 
-        <td><%=toDo.getUser().getName() + " " + toDo.getUser().getSurname()%>
-        </td>
+                <%
+       User user =(User) request.getSession().getAttribute("user");
+        if (user.equals(toDo.getUser())) {%>
+            <tr>
 
-        <td><a href="/deleteToDos?id=<%=toDo.getId()%>">Delete</a></td>
-        <td><a href="/editToDos?id=<%=toDo.getId()%>">Edit</a></td>
+                <td><%=toDo.getTitle()%>
+                </td>
+                <td><%=toDo.getCreatedDate()%>
+                </td>
+                <td><%=toDo.getFinishDate()%>
+                </td>
+                <td><%=toDo.getStatus()%>
+                </td>
+                <td><%=toDo.getUser().getName() + " " + toDo.getUser().getSurname()%>
+                </td>
+
+        <td><a href="/editToDos?id=<%=toDo.getId()%>"><button class="btn btn-primary">Edit</button> </a></td>
+        <td><a href="/deleteToDos?id=<%=toDo.getId()%>"><button class="btn btn-primary">Delete</button> </a></td>
     </tr>
 
     <% }%>
     <% }%>
+    <% }%>
+    </table>
 
 
     <!-- Todo list section -->
