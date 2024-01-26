@@ -20,7 +20,7 @@
 <%ToDo toDo = (ToDo) request.getAttribute("toDos");%>
 Edit ToDO <br>
 <form method="post" action="/editToDos">
-<table border="1">
+<table width="70%">
     <tr>
         <th>Title</th>
         <th>Created Date</th>

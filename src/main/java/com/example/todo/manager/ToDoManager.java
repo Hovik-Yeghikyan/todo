@@ -26,7 +26,7 @@ public class ToDoManager {
                         .createdDate(resultSet.getDate("created_date"))
                         .finishDate(resultSet.getDate("finish_date"))
                         .user(userManager.getUserById(resultSet.getInt("user_id")))
-                        .status(Status.valueOf(resultSet.getString("status")))
+                        .status(resultSet.getString("status"))
                         .build());
             }
         } catch (SQLException e) {
@@ -45,7 +45,7 @@ public class ToDoManager {
                         .title(resultSet.getString("title"))
                         .createdDate(resultSet.getDate("created_date"))
                         .user(userManager.getUserById(resultSet.getInt("user_id")))
-                        .status(Status.valueOf(resultSet.getString("status")))
+                        .status(resultSet.getString("status"))
                         .build();
             }
         } catch (SQLException e) {
@@ -60,7 +60,7 @@ public class ToDoManager {
             preparedStatement.setString(1, toDos.getTitle());
             preparedStatement.setString(2, DateUtil.convertDateToString(toDos.getCreatedDate()));
             preparedStatement.setInt(3, toDos.getUser().getId());
-            preparedStatement.setString(4, String.valueOf(toDos.getStatus()));
+            preparedStatement.setString(4, toDos.getStatus());
             preparedStatement.executeUpdate();
             ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
             if (generatedKeys.next()) {
@@ -86,7 +86,7 @@ public class ToDoManager {
         String sql = "UPDATE to_do SET finish_date = ?, status = ? WHERE id = ?";
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setString(1, DateUtil.convertDateToString(toDos.getFinishDate()));
-            preparedStatement.setString(2, String.valueOf(toDos.getStatus()));
+            preparedStatement.setString(2, toDos.getStatus());
             preparedStatement.setInt(3,toDos.getId());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {

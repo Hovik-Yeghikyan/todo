@@ -19,5 +19,5 @@ public class ToDo {
     private Date createdDate;
     private Date finishDate;
     private User user;
-    private Status status;
+    private String status;
 }

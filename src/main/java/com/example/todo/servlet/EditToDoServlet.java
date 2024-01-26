@@ -35,7 +35,7 @@ public class EditToDoServlet extends HttpServlet {
         int id = Integer.parseInt(req.getParameter("id"));
         toDoManager.update(ToDo.builder()
                 .finishDate(new Date())
-                .status(Status.DONE)
+                .status(String.valueOf(Status.DONE))
                 .id(id)
                 .build());
         resp.sendRedirect("/home");

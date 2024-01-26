@@ -36,7 +36,7 @@ public class AddToDoServlet extends HttpServlet {
                 .title(title)
                 .createdDate(new Date())
                 .user(user)
-                .status(Status.NEW)
+                .status(String.valueOf(Status.NEW))
                 .build());
         resp.sendRedirect("/home");
 
