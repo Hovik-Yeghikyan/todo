@@ -83,7 +83,7 @@ public class ToDoManager {
     }
 
     public void update(ToDo toDos) {
-        String sql = "UPDATE to_do SET finish_date = ?, status = ? WHERE id = ?";
+        String sql = "UPDATE to_do SET  finish_date = ?, status = ? WHERE id = ?";
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setString(1, DateUtil.convertDateToString(toDos.getFinishDate()));
             preparedStatement.setString(2, toDos.getStatus());
@@ -95,6 +95,16 @@ public class ToDoManager {
     }
 
 
+    public void updateTitle(ToDo toDos) {
+        String sql = "UPDATE to_do SET  title = ? WHERE id = ?";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setString(1,toDos.getTitle());
+            preparedStatement.setInt(2,toDos.getId());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
+    }
 }
 

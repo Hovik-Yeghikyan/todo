@@ -84,8 +84,9 @@ Welcome <%=user.getName() + " " + user.getSurname()%>  !!! <a href="/logout">Log
             <th>Finish Date</th>
             <th>Status</th>
             <th>Created by</th>
-            <th>Edit</th>
-            <th>Delete</th>
+<%--            <th>Edit</th>--%>
+<%--            <th>Update</th>--%>
+<%--            <th>Delete</th>--%>
         </tr>
 <tr>
     <%
@@ -110,7 +111,9 @@ Welcome <%=user.getName() + " " + user.getSurname()%>  !!! <a href="/logout">Log
                 </td>
 
         <td><a href="/editToDos?id=<%=toDo.getId()%>"><button class="btn btn-primary">Edit</button> </a></td>
+        <td><a href="/updateToDos?id=<%=toDo.getId()%>"><button class="btn btn-primary">Update</button> </a></td>
         <td><a href="/deleteToDos?id=<%=toDo.getId()%>"><button class="btn btn-primary">Delete</button> </a></td>
+
     </tr>
 
     <% }%>

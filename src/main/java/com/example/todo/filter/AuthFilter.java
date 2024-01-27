@@ -11,7 +11,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebFilter(urlPatterns = {"/home","/deleteToDos",
-        "/addToDo", "/deleteLessons",  "/logout","/editToDos"})
+        "/addToDo", "/deleteLessons",  "/logout","/editToDos","/updateToDos"})
 public class AuthFilter implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {

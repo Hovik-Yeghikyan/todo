@@ -19,7 +19,7 @@
 <body>
 <%ToDo toDo = (ToDo) request.getAttribute("toDos");%>
 Edit ToDO <br>
-<form method="post" action="/editToDos">
+<form method="post" action="/updateToDos">
     <table width="70%">
         <tr>
             <th>Title</th>
@@ -29,7 +29,7 @@ Edit ToDO <br>
             <th>Created by</th>
         </tr>
         <input type="hidden" name="id" value="<%=toDo.getId()%>">
-        <td><%=toDo.getTitle()%>
+        <td><input type="text" name="title" value="<%=toDo.getTitle()%>">
         </td>
         <td><%=toDo.getCreatedDate()%>
         </td>
@@ -40,7 +40,7 @@ Edit ToDO <br>
         <td><%=toDo.getUser().getName() + " " + toDo.getUser().getSurname()%>
         </td>
         <td>
-            <button type="submit" class="btn btn-primary">Done</button>
+            <button type="submit" class="btn btn-primary">Update</button>
         </td>
     </table>
 </form>
